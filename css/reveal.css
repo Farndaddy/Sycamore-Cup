@@ -1,0 +1,156 @@
+/* =========================================================
+   2026 TEAM REVEAL — presenter-controlled draft board
+   Loaded only on reveal-2026.html, on top of style.css.
+   ========================================================= */
+
+.reveal-body {
+  background: radial-gradient(ellipse at top, #24463A 0%, var(--forest) 45%, #12241D 100%);
+  min-height: 100vh;
+  color: var(--ivory);
+  overflow-x: hidden;
+  perspective: 1400px;
+}
+
+.reveal-stage { max-width: 1400px; margin: 0 auto; padding: 40px 32px 90px; }
+
+.reveal-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 34px; flex-wrap: wrap; gap: 14px;
+}
+.reveal-topbar .brandmark { display: flex; align-items: center; gap: 14px; }
+.reveal-topbar .brandmark img { height: 48px; width: 48px; object-fit: contain; }
+.reveal-topbar .eyebrow { color: #E9D9AE; }
+.reveal-topbar h1 { color: #fff; font-size: clamp(1.5rem, 3.4vw, 2.4rem); margin: 0; }
+.reveal-topbar h1 em { color: #E9D9AE; }
+
+.reveal-controls { display: flex; gap: 10px; align-items: center; }
+.reveal-controls .btn { border-color: rgba(255,255,255,0.35); color: #fff; }
+.reveal-controls .btn:hover { background: rgba(255,255,255,0.12); }
+.reveal-controls .btn-primary { background: var(--brass); border-color: var(--brass); color: #201E1A; }
+.reveal-controls .btn-primary:hover { background: #C4A160; border-color: #C4A160; }
+
+.reveal-progress {
+  font-family: var(--font-mono); font-size: 0.78rem; color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em; text-align: center; margin-bottom: 30px;
+}
+.reveal-progress-bar { height: 3px; background: rgba(255,255,255,0.15); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.reveal-progress-bar-fill { height: 100%; background: var(--brass); transition: width .5s ease; }
+
+/* ---------- Team columns ---------- */
+.reveal-teams { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: start; margin-bottom: 48px; }
+.reveal-vs {
+  font-family: var(--font-display); font-style: italic; font-size: 1.6rem;
+  color: rgba(255,255,255,0.35); align-self: center; padding-top: 40px;
+}
+.reveal-team-col {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px; padding: 22px; min-height: 160px;
+}
+.reveal-team-col h2 {
+  color: #fff; font-size: 1.4rem; margin-bottom: 4px;
+  display: flex; align-items: center; gap: 10px;
+}
+.reveal-team-col .swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.reveal-team-col.accent-forest .swatch { background: #6FA98A; }
+.reveal-team-col.accent-clay .swatch { background: #D79A7C; }
+.reveal-team-col.accent-brass .swatch { background: var(--brass); }
+.reveal-team-col .count {
+  font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.5);
+  margin-bottom: 18px; display: block;
+}
+.reveal-roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 14px; }
+.reveal-roster-empty { color: rgba(255,255,255,0.3); font-size: 0.85rem; font-style: italic; grid-column: 1 / -1; padding: 20px 0; text-align: center; }
+
+.roster-tile { text-align: center; animation: tile-in .4s ease both; }
+@keyframes tile-in { from { opacity: 0; transform: translateY(8px) scale(0.9); } to { opacity: 1; transform: none; } }
+.roster-tile .thumb {
+  width: 100%; aspect-ratio: 5/7; border-radius: 6px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 6px;
+}
+.roster-tile .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.roster-tile .thumb .initials {
+  font-family: var(--font-display); font-style: italic; font-size: 1.3rem; color: #E9D9AE;
+}
+.roster-tile .rname { font-size: 0.72rem; color: rgba(255,255,255,0.85); line-height: 1.25; }
+
+/* ---------- Mystery pool ---------- */
+.reveal-pool-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
+.reveal-pool-head h3 { color: #fff; font-size: 1rem; margin: 0; letter-spacing: 0.02em; }
+.reveal-pool {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px;
+}
+
+.mystery-card {
+  aspect-ratio: 5/7; border-radius: 8px; cursor: pointer;
+  position: relative; perspective: 800px;
+  transition: transform .15s ease;
+}
+.mystery-card:hover { transform: translateY(-4px); }
+.mystery-card.is-next { box-shadow: 0 0 0 2px var(--brass), 0 8px 24px rgba(0,0,0,0.4); }
+.mystery-card.is-gone { visibility: hidden; }
+
+.mystery-card-back {
+  position: absolute; inset: 0; border-radius: 8px;
+  background:
+    repeating-linear-gradient(135deg, rgba(233,217,174,0.06) 0 10px, rgba(233,217,174,0.0) 10px 20px),
+    linear-gradient(160deg, #1E3A2F 0%, #12241D 100%);
+  border: 1px solid rgba(233,217,174,0.3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.mystery-card-back .flag { font-size: 1.5rem; opacity: 0.8; }
+.mystery-card-back .q { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: #E9D9AE; opacity: 0.85; }
+
+/* ---------- Flying reveal clone (fixed position, animated via JS) ---------- */
+.flying-card {
+  position: fixed; z-index: 999; border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  transition: top .7s cubic-bezier(.2,.8,.2,1), left .7s cubic-bezier(.2,.8,.2,1),
+              width .7s cubic-bezier(.2,.8,.2,1), height .7s cubic-bezier(.2,.8,.2,1),
+              transform .6s ease, opacity .3s ease;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.flying-card .face {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 10px;
+}
+.flying-card .face.front {
+  background: linear-gradient(160deg, #2C5342 0%, #1E3A2F 100%);
+  border: 1px solid rgba(233,217,174,0.35);
+  transform: rotateY(180deg);
+}
+.flying-card .face.front img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.flying-card .face.front .initials-big { font-family: var(--font-display); font-style: italic; font-size: 2.4rem; color: #E9D9AE; }
+.flying-card .face.back { background: linear-gradient(160deg, #1E3A2F 0%, #12241D 100%); border: 1px solid rgba(233,217,174,0.3); }
+.flying-card .face.back .q { font-family: var(--font-display); font-style: italic; font-size: 2rem; color: #E9D9AE; }
+.flying-card.is-flipping { transform: rotateY(180deg); }
+.flying-card .nameplate {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 8px 8px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.75), rgba(0,0,0,0));
+  color: #fff; font-size: 0.85rem; text-align: center; opacity: 0; transition: opacity .3s ease .5s;
+  border-radius: 0 0 10px 10px;
+}
+.flying-card.show-name .nameplate { opacity: 1; }
+
+/* ---------- Complete banner ---------- */
+.reveal-complete {
+  text-align: center; margin-top: 40px; padding: 34px; border-radius: 6px;
+  background: rgba(233,217,174,0.08); border: 1px solid rgba(233,217,174,0.3);
+  display: none;
+}
+.reveal-complete.show { display: block; animation: tile-in .5s ease both; }
+.reveal-complete h2 { color: #E9D9AE; margin-bottom: 6px; }
+.reveal-complete p { color: rgba(255,255,255,0.7); margin: 0; }
+
+.reveal-footer-note {
+  text-align: center; margin-top: 60px; font-size: 0.72rem; color: rgba(255,255,255,0.3);
+}
+.reveal-footer-note a { text-decoration: underline; color: rgba(255,255,255,0.45); }
+
+@media (max-width: 820px) {
+  .reveal-teams { grid-template-columns: 1fr; }
+  .reveal-vs { display: none; }
+}
