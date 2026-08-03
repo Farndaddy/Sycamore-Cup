@@ -2,10 +2,7 @@
   "meta": {
     "name": "Sycamore Cup Classic",
     "founded": 2021,
-    "sourceNote": "Data transcribed from the 2023, 2024, and 2025 brochures. Confirmed with Farnia on 2026-07-26.",
-    "dataNotes": [
-      "2025 has no fun-fact fields in the source brochure (golfer/movie/food-style questions) \u2014 only handicap indexes and match pairings. Farnia will add 2025 fun facts (and other profile info) via the Sheet CMS once it's connected to a live GitHub repo."
-    ]
+    "sourceNote": "Content managed via the Sycamore Cup CMS Google Sheet."
   },
   "players": [
     {
@@ -91,7 +88,6 @@
       "id": "collin-jewett",
       "name": "Collin Jewett",
       "yearsAttended": [
-        2024,
         2025
       ],
       "indexByYear": {
@@ -259,9 +255,9 @@
             {
               "playerId": "anthony-gjonaj",
               "displayName": "Anthony",
-              "surname": "Gjonaj",
               "jerseyNumber": 10,
               "titles": "The Detroit Native, Dukie Fuckboy #1, A to the G, The Founder, The LOUDMouth from da D",
+              "index": 10,
               "funFacts": {
                 "golfer": "Payne Stewart",
                 "sportsTeam": "Mighty Ducks",
@@ -276,9 +272,9 @@
             {
               "playerId": "mike-grosh",
               "displayName": "Mikey",
-              "surname": "Groshie",
               "jerseyNumber": 10,
               "titles": "Southsidezinksi, Buttercup Draw, Upperdeckies Only",
+              "index": 10,
               "funFacts": {
                 "golfer": "Freddie",
                 "sportsTeam": "Beloit Snappers",
@@ -293,9 +289,9 @@
             {
               "playerId": "jack-mccarthy",
               "displayName": "Jackie",
-              "surname": "McCarthy",
               "jerseyNumber": 2,
               "titles": "The Stick, Beantown's Finest, Close'nough To Smell Ya",
+              "index": 2,
               "funFacts": {
                 "golfer": "DJ",
                 "sportsTeam": "Hartford Whalers",
@@ -310,9 +306,9 @@
             {
               "playerId": "chris-clement",
               "displayName": "Chris",
-              "surname": "Clement",
               "jerseyNumber": 13,
               "titles": "The Weatherman, North Kakalacka's One and Only",
+              "index": 13,
               "funFacts": {
                 "golfer": "Max Homa",
                 "sportsTeam": "Redskins",
@@ -327,7 +323,6 @@
             {
               "playerId": "casey-godfrey",
               "displayName": "Casey",
-              "surname": "Godfrey",
               "jerseyNumber": 7,
               "titles": "Da Dom Dolla, Indy's Smoovest, Urshermoves",
               "funFacts": {
@@ -344,9 +339,9 @@
             {
               "playerId": "farnia-ghavami",
               "displayName": "Farnia",
-              "surname": "Ghavami",
               "jerseyNumber": 19,
               "titles": "The Brown Mamba, The Farn, The Take Care-n-Brush Yo Hair",
+              "index": 19,
               "funFacts": {
                 "golfer": "The Hamburglar",
                 "sportsTeam": "Polk High + Any Team vs LeQueen",
@@ -369,9 +364,9 @@
             {
               "playerId": "gregg-suglia",
               "displayName": "Gregg",
-              "surname": "Suglia",
               "jerseyNumber": 8,
               "titles": "The Young Buck, there are two-G's in Gregg Boys, Putters in the Bag",
+              "index": 8,
               "funFacts": {
                 "golfer": "Jackie the Stick",
                 "sportsTeam": "Average Joe's",
@@ -386,9 +381,9 @@
             {
               "playerId": "scottie-collins",
               "displayName": "Scottie",
-              "surname": "Collins",
               "jerseyNumber": 4,
               "titles": "No holds bar, been there done that, you need me to put a nipple on that for you",
+              "index": 4,
               "funFacts": {
                 "golfer": "Rory McAvoy",
                 "sportsTeam": "Western University Dolphins",
@@ -403,9 +398,9 @@
             {
               "playerId": "nick-fowler",
               "displayName": "Nickie",
-              "surname": "Fowler",
               "jerseyNumber": 3,
               "titles": "The Spur Lover, Lady Back Bubbler Tickler, the Rife of Your Life",
+              "index": 3,
               "funFacts": {
                 "golfer": "Joel Dahmen",
                 "sportsTeam": "Brazilian Women's Sand Volleyball",
@@ -420,9 +415,9 @@
             {
               "playerId": "robert-stong",
               "displayName": "Rob",
-              "surname": "Stong",
               "jerseyNumber": 10,
               "titles": "Da Chokehold, Dead Sleeper, Pillows Deep from the Heart of Texas",
+              "index": 10,
               "funFacts": {
                 "golfer": "Bubba \"dat man good\" Watson",
                 "sportsTeam": "85' Bears",
@@ -437,9 +432,9 @@
             {
               "playerId": "nigel-scott",
               "displayName": "Nigel",
-              "surname": "Scott",
               "jerseyNumber": 6,
               "titles": "Right Here Maaaan, The Green Reader from the Back Row",
+              "index": 6,
               "funFacts": {
                 "golfer": "Delroy Cambridge",
                 "sportsTeam": "Canadian Curling Team",
@@ -454,9 +449,9 @@
             {
               "playerId": "brian-danahy",
               "displayName": "Brian",
-              "surname": "Danahy",
               "jerseyNumber": 25,
               "titles": "Can't Giveit Da Fuqup, Mr. Smiles, Cadillac Jackblack",
+              "index": 25,
               "funFacts": {
                 "golfer": "Graeme McDowell",
                 "sportsTeam": "Avalanche",
@@ -495,6 +490,7 @@
               "displayName": "Swinger Bell Gjonaj",
               "jerseyNumber": 13,
               "titles": "Slang-er of shoes, clubs, hoes, and strokes",
+              "index": 13,
               "funFacts": {
                 "golfClub": "54 degree",
                 "distanceShot": "88 meters",
@@ -511,6 +507,7 @@
               "displayName": "Lost & Found Groshie",
               "jerseyNumber": 9,
               "titles": "Half-human, half-alien, a true unicorn in the age of time travel and space, Green Card Holder",
+              "index": 9,
               "funFacts": {
                 "golfClub": "7 iron",
                 "distanceShot": "130 yards",
@@ -527,6 +524,7 @@
               "displayName": "FB Marketplace Fowler",
               "jerseyNumber": 6,
               "titles": "Uncle Algo, Gone Fishin', Married to Da Rife DDN Texas Style",
+              "index": 6,
               "funFacts": {
                 "golfClub": "60 degree",
                 "distanceShot": "77 yards",
@@ -543,9 +541,9 @@
               "displayName": "Stongerino",
               "jerseyNumber": 12,
               "titles": "Da Birthday Boy, the Straight Sticka to da Vikings, The Texas Wedger of Da South",
+              "index": 12,
               "funFacts": {
                 "golfClub": "6 iron",
-                "distanceShot": null,
                 "album": "Ten (Pearl Jam)",
                 "dish": "Fettuccine Alfredo",
                 "star": "Amy Anderssen",
@@ -559,6 +557,7 @@
               "displayName": "Back9 Bobby",
               "jerseyNumber": 9,
               "titles": "Pedal to the metal, get on it toots, dis D-don't **** itself",
+              "index": 9,
               "funFacts": {
                 "golfClub": "8 iron",
                 "distanceShot": "115 yards",
@@ -575,6 +574,7 @@
               "displayName": "Berna Parma, Parma Berna",
               "jerseyNumber": 20,
               "titles": "The homie on dem (Google) sheets, and gettin' off yo sista in (dem Egyptian) sheets",
+              "index": 19,
               "funFacts": {
                 "golfClub": "Gap wedge",
                 "distanceShot": "124 yards",
@@ -599,6 +599,7 @@
               "displayName": "Enter Da Sandman Suglia",
               "jerseyNumber": 7,
               "titles": "The Ruler of the Desert, the IDGAF of the Generation, the \"I've had this talk a lot about this topic\" man, LeBron D-Rider A-Team",
+              "index": 7,
               "funFacts": {
                 "golfClub": "9 iron with some ice cubes",
                 "distanceShot": "5-yards off the green",
@@ -615,6 +616,7 @@
               "displayName": "Scottie IG Collins",
               "jerseyNumber": 6,
               "titles": "Sex, Drama and Rock-n-Roll, Algo4Days, Orgasms-n-Putts, Gotta Be the Shoes Maaaaan",
+              "index": 6,
               "funFacts": {
                 "golfClub": "Pitching Wedge",
                 "distanceShot": "Dogleg left over water",
@@ -631,6 +633,7 @@
               "displayName": "The Dom Droppa Godfrey",
               "jerseyNumber": 6,
               "titles": "100+ Rounds Logged, Golfaholic in Dem Short Shorts, Clubs Cost More Than His Caaaar",
+              "index": 7,
               "funFacts": {
                 "golfClub": "Hybrid",
                 "distanceShot": "125 yards",
@@ -647,6 +650,7 @@
               "displayName": "He's Asian Mon",
               "jerseyNumber": 6,
               "titles": "Compacter of Irons, Da Dandata of Dem Greens, DaBabyFace Assassin and Da Puker of Rentalz",
+              "index": 6,
               "funFacts": {
                 "golfClub": "8 iron",
                 "distanceShot": "120 yards",
@@ -663,6 +667,7 @@
               "displayName": "Austonia De Bisonia Chen",
               "jerseyNumber": 12,
               "titles": "He's got 5 on it while twistin' up a dozen, BisonLova, NukeTown Tee Box Bomber",
+              "index": 12,
               "funFacts": {
                 "golfClub": "Pitching Wedge",
                 "distanceShot": "135 yards",
@@ -679,6 +684,7 @@
               "displayName": "GITFU Danahy",
               "jerseyNumber": 25,
               "titles": "The Man Behind Da Man, Cadillac Grillz, Cadillac Billz, Cadillac Jack, Cadillac Black",
+              "index": 25,
               "funFacts": {
                 "golfClub": "Gap Wedge",
                 "distanceShot": "100 yards",
@@ -708,40 +714,47 @@
         {
           "id": "2025-sycamore-swingers",
           "name": "Sycamore Swingers",
-          "captain": "Mike Grosh",
+          "captain": "",
           "result": "Runner-up",
           "roster": [
             {
               "playerId": "nick-fowler",
+              "displayName": "Nick Fowler",
               "index": 3
             },
             {
               "playerId": "robert-stong",
+              "displayName": "Robert Stong",
               "index": 12
             },
             {
               "playerId": "anthony-gjonaj",
+              "displayName": "Anthony Gjonaj",
               "index": 12
             },
             {
               "playerId": "brian-danahy",
+              "displayName": "Brian Danahy",
               "index": 25
             },
             {
               "playerId": "mike-grosh",
+              "displayName": "Mike Grosh",
               "index": 9
             },
             {
               "playerId": "rob-vassallo",
-              "index": 9,
-              "displayName": "Bobby Vassallo"
+              "displayName": "Bobby Vassallo",
+              "index": 9
             },
             {
               "playerId": "jack-mccarthy",
+              "displayName": "Jack McCarthy",
               "index": 2
             },
             {
               "playerId": "ben-conway",
+              "displayName": "Ben Conway",
               "index": 5
             }
           ]
@@ -749,39 +762,47 @@
         {
           "id": "2025-dominators",
           "name": "DOMinators",
-          "captain": "Casey Godfrey",
+          "captain": "",
           "result": "Champion",
           "roster": [
             {
               "playerId": "casey-godfrey",
+              "displayName": "Casey Godfrey",
               "index": 8
             },
             {
               "playerId": "collin-jewett",
+              "displayName": "Collin Jewett",
               "index": 9
             },
             {
               "playerId": "nigel-scott",
+              "displayName": "Nigel Scott",
               "index": 5
             },
             {
               "playerId": "auston-chen",
+              "displayName": "Auston Chen",
               "index": 17
             },
             {
               "playerId": "scottie-collins",
+              "displayName": "Scottie Collins",
               "index": 3
             },
             {
               "playerId": "farnia-ghavami",
+              "displayName": "Farnia Ghavami",
               "index": 18
             },
             {
               "playerId": "gregg-suglia",
+              "displayName": "Gregg Suglia",
               "index": 7
             },
             {
               "playerId": "david-schultz",
+              "displayName": "David Schultz",
               "index": 17
             }
           ]
