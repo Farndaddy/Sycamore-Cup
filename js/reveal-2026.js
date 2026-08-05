@@ -60,9 +60,7 @@ async function boot() {
     return;
   }
 
-  document.getElementById('event-title').innerHTML = `${data.eventTitle || '2026 Sycamore Cup'}`;
-  document.getElementById('event-subtitle').textContent = data.eventSubtitle || 'Team Reveal';
-  document.title = `${data.eventSubtitle || 'Team Reveal'} — ${data.eventTitle || 'Sycamore Cup Classic'}`;
+  document.title = `${data.eventSubtitle || 'The Reveal'} — ${data.eventTitle || 'Sycamore Cup Classic'}`;
 
   STATE = {
     teams: {},
@@ -89,17 +87,26 @@ async function boot() {
 function renderTeamColumns() {
   const el = document.getElementById('reveal-teams');
   const teamIds = Object.keys(STATE.teams);
-  el.innerHTML = teamIds.map((id, i) => {
-    const html = teamColumnHTML(id);
-    return i < teamIds.length - 1 ? html + (i === 0 ? `<div class="reveal-vs">vs</div>` : '') : html;
-  }).join('');
+  el.innerHTML = teamIds.map(id => teamColumnHTML(id)).join('');
 }
 
 function teamColumnHTML(teamId) {
   const t = STATE.teams[teamId];
   return `
     <div class="reveal-team-col accent-${t.accent}" id="team-col-${teamId}">
-      <h2><span class="swatch"></span>${t.name}</h2>
+      <div class="reveal-team-head">
+        <h2><span class="swatch"></span>${t.name}</h2>
+        <div class="team-stats">
+          <div class="stat">
+            <span class="stat-label">Team Handicap</span>
+            <span class="stat-value" id="stat-handicap-${teamId}">–</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Ave. Handicap</span>
+            <span class="stat-value" id="stat-avg-${teamId}">–</span>
+          </div>
+        </div>
+      </div>
       <span class="count" id="team-count-${teamId}">0 revealed</span>
       <div class="reveal-roster" id="team-roster-${teamId}">
         <div class="reveal-roster-empty">Waiting...</div>
@@ -107,14 +114,31 @@ function teamColumnHTML(teamId) {
     </div>`;
 }
 
+// Sums/averages the "index" (handicap) field across a team's revealed
+// players so far — updates live as each player lands, building suspense
+// about which team ends up stronger/weaker.
+function updateTeamStats(teamId) {
+  const items = STATE.teams[teamId].revealedItems.filter(i => typeof i.index === 'number');
+  const handicapEl = document.getElementById(`stat-handicap-${teamId}`);
+  const avgEl = document.getElementById(`stat-avg-${teamId}`);
+  if (!handicapEl || !avgEl) return;
+  if (!items.length) {
+    handicapEl.textContent = '–';
+    avgEl.textContent = '–';
+    return;
+  }
+  const sum = items.reduce((s, i) => s + i.index, 0);
+  handicapEl.textContent = sum.toFixed(1).replace(/\.0$/, '');
+  avgEl.textContent = (sum / items.length).toFixed(1);
+}
+
 function renderPool() {
   const el = document.getElementById('reveal-pool');
   el.innerHTML = STATE.order.map((item) => `
     <div class="mystery-card ${item._i === nextUnrevealedIndex() ? 'is-next' : ''}" data-index="${item._i}" id="mystery-${item._i}">
-      <div class="mystery-card-back">
-        <span class="flag">⛳</span>
-        <span class="q">?</span>
-      </div>
+      <span class="pick-num">${item._i + 1}</span>
+      <span class="flag">⛳</span>
+      <span class="q">?</span>
     </div>
   `).join('');
   el.querySelectorAll('.mystery-card').forEach(card => {
@@ -224,6 +248,7 @@ function revealByIndex(idx) {
         team.revealedItems.push(item);
         updateProgress();
         updatePoolCount();
+        updateTeamStats(item.team);
         // refresh "is-next" highlight
         document.querySelectorAll('.mystery-card').forEach(c => c.classList.remove('is-next'));
         const nextIdx = nextUnrevealedIndex();
