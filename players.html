@@ -51,11 +51,17 @@
       </tr>
     `).join('');
 
-    document.getElementById('data-notes').innerHTML = `
-      <h3 class="mt-0">Data Notes</h3>
-      <ul style="color:var(--ink-soft); padding-left:20px; margin-bottom:0;">
-        ${data.meta.dataNotes.map(n => `<li style="margin-bottom:8px;">${n}</li>`).join('')}
-      </ul>`;
+    const notes = (data.meta && data.meta.dataNotes) || [];
+    const notesEl = document.getElementById('data-notes');
+    if (notes.length) {
+      notesEl.innerHTML = `
+        <h3 class="mt-0">Data Notes</h3>
+        <ul style="color:var(--ink-soft); padding-left:20px; margin-bottom:0;">
+          ${notes.map(n => `<li style="margin-bottom:8px;">${n}</li>`).join('')}
+        </ul>`;
+    } else {
+      notesEl.style.display = 'none';
+    }
   });
 </script>
 </body>
