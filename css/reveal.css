@@ -17,11 +17,15 @@
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 34px; flex-wrap: wrap; gap: 14px;
 }
-.reveal-topbar .brandmark { display: flex; align-items: center; gap: 14px; }
-.reveal-topbar .brandmark img { height: 48px; width: 48px; object-fit: contain; }
-.reveal-topbar .eyebrow { color: #E9D9AE; }
-.reveal-topbar h1 { color: #fff; font-size: clamp(1.5rem, 3.4vw, 2.4rem); margin: 0; }
+.reveal-topbar .brandmark { display: flex; align-items: center; gap: 32px; }
+.reveal-topbar .brandmark img { height: 231px; width: 231px; object-fit: contain; flex-shrink: 0; }
+.reveal-topbar h1 { color: #fff; font-size: clamp(1.5rem, 3vw, 2.15rem); margin: 0; line-height: 1.25; }
+.reveal-topbar h1 .pipe { color: rgba(255,255,255,0.3); font-weight: 300; padding: 0 4px; }
 .reveal-topbar h1 em { color: #E9D9AE; }
+
+@media (max-width: 640px) {
+  .reveal-topbar .brandmark img { height: 140px; width: 140px; }
+}
 
 .reveal-controls { display: flex; gap: 10px; align-items: center; }
 .reveal-controls .btn { border-color: rgba(255,255,255,0.35); color: #fff; }
@@ -36,19 +40,24 @@
 .reveal-progress-bar { height: 3px; background: rgba(255,255,255,0.15); border-radius: 3px; margin-top: 8px; overflow: hidden; }
 .reveal-progress-bar-fill { height: 100%; background: var(--brass); transition: width .5s ease; }
 
-/* ---------- Team columns ---------- */
-.reveal-teams { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: start; margin-bottom: 48px; }
-.reveal-vs {
-  font-family: var(--font-display); font-style: italic; font-size: 1.6rem;
-  color: rgba(255,255,255,0.35); align-self: center; padding-top: 40px;
-}
+/* ---------- Presenter layout: pool rail (left) + stacked teams (right) ---------- */
+.reveal-main { display: grid; grid-template-columns: 210px 1fr; gap: 40px; align-items: start; margin-bottom: 48px; }
+.reveal-pool-col { position: sticky; top: 24px; }
+
+/* ---------- Team columns (3 side by side; each roster stacks vertically) ---------- */
+.reveal-teams { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
 .reveal-team-col {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 4px; padding: 22px; min-height: 160px;
+  border-radius: 4px; padding: 22px; min-height: 120px;
+  display: flex; flex-direction: column;
+}
+.reveal-team-head {
+  margin-bottom: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
 }
 .reveal-team-col h2 {
-  color: #fff; font-size: 1.4rem; margin-bottom: 4px;
+  color: #fff; font-size: 1.4rem; margin-bottom: 0;
   display: flex; align-items: center; gap: 10px;
 }
 .reveal-team-col .swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
@@ -59,48 +68,77 @@
   font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.5);
   margin-bottom: 18px; display: block;
 }
-.reveal-roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 14px; }
-.reveal-roster-empty { color: rgba(255,255,255,0.3); font-size: 0.85rem; font-style: italic; grid-column: 1 / -1; padding: 20px 0; text-align: center; }
+.reveal-roster { display: flex; flex-direction: column; gap: 24px; }
+.reveal-roster-empty { color: rgba(255,255,255,0.3); font-size: 0.85rem; font-style: italic; padding: 20px 0; text-align: center; }
 
-.roster-tile { text-align: center; animation: tile-in .4s ease both; }
-@keyframes tile-in { from { opacity: 0; transform: translateY(8px) scale(0.9); } to { opacity: 1; transform: none; } }
+/* Full, uncropped card per player — nothing trimmed off, page just gets long. */
+.roster-tile {
+  width: 100%;
+  animation: tile-in .4s ease both;
+}
+@keyframes tile-in { from { opacity: 0; transform: translateY(8px) scale(0.96); } to { opacity: 1; transform: none; } }
 .roster-tile .thumb {
-  width: 100%; aspect-ratio: 5/7; border-radius: 6px; overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06);
-  display: flex; align-items: center; justify-content: center; margin-bottom: 6px;
+  width: 100%; aspect-ratio: 5/7; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(233,217,174,0.4); background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
 }
-.roster-tile .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.roster-tile .thumb img { width: 100%; height: 100%; object-fit: contain; }
 .roster-tile .thumb .initials {
-  font-family: var(--font-display); font-style: italic; font-size: 1.3rem; color: #E9D9AE;
+  font-family: var(--font-display); font-style: italic; font-size: 2.4rem; color: #E9D9AE;
 }
-.roster-tile .rname { font-size: 0.72rem; color: rgba(255,255,255,0.85); line-height: 1.25; }
+.roster-tile .rname { font-size: 1.15rem; color: #fff; font-weight: 600; line-height: 1.3; text-align: center; }
 
-/* ---------- Mystery pool ---------- */
+/* ---------- Team handicap stats (top of column, next to team name) ---------- */
+.team-stats {
+  margin-top: 12px;
+  display: flex; gap: 24px;
+}
+.team-stats .stat { text-align: left; }
+.team-stats .stat-label {
+  display: block; font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5);
+  margin-bottom: 3px;
+}
+.team-stats .stat-value {
+  display: block; font-family: var(--font-display); font-size: 1.5rem; color: #E9D9AE;
+}
+
+/* ---------- Mystery pool (left rail, numbered 1-12 top to bottom) ---------- */
 .reveal-pool-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px; }
 .reveal-pool-head h3 { color: #fff; font-size: 1rem; margin: 0; letter-spacing: 0.02em; }
 .reveal-pool {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px;
+  display: flex; flex-direction: column; gap: 10px;
 }
 
 .mystery-card {
-  aspect-ratio: 5/7; border-radius: 8px; cursor: pointer;
-  position: relative; perspective: 800px;
-  transition: transform .15s ease;
-}
-.mystery-card:hover { transform: translateY(-4px); }
-.mystery-card.is-next { box-shadow: 0 0 0 2px var(--brass), 0 8px 24px rgba(0,0,0,0.4); }
-.mystery-card.is-gone { visibility: hidden; }
-
-.mystery-card-back {
-  position: absolute; inset: 0; border-radius: 8px;
+  border-radius: 8px; cursor: pointer;
+  position: relative;
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
   background:
     repeating-linear-gradient(135deg, rgba(233,217,174,0.06) 0 10px, rgba(233,217,174,0.0) 10px 20px),
     linear-gradient(160deg, #1E3A2F 0%, #12241D 100%);
   border: 1px solid rgba(233,217,174,0.3);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  transition: transform .15s ease;
 }
-.mystery-card-back .flag { font-size: 1.5rem; opacity: 0.8; }
-.mystery-card-back .q { font-family: var(--font-display); font-style: italic; font-size: 1.6rem; color: #E9D9AE; opacity: 0.85; }
+.mystery-card:hover { transform: translateX(4px); }
+.mystery-card.is-next { box-shadow: 0 0 0 2px var(--brass), 0 8px 24px rgba(0,0,0,0.4); }
+.mystery-card.is-gone { visibility: hidden; }
+
+.mystery-card .pick-num {
+  font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.45);
+  width: 18px; flex-shrink: 0; text-align: center;
+}
+.mystery-card .flag { font-size: 1.1rem; opacity: 0.8; flex-shrink: 0; }
+.mystery-card .q { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: #E9D9AE; opacity: 0.85; margin-left: auto; }
+
+@media (max-width: 980px) {
+  .reveal-main { grid-template-columns: 1fr; }
+  .reveal-pool-col { position: static; }
+  .reveal-pool { flex-direction: row; flex-wrap: wrap; }
+  .mystery-card { flex: 1 1 140px; }
+  .reveal-teams { grid-template-columns: 1fr; }
+}
 
 /* ---------- Flying reveal clone (fixed position, animated via JS) ---------- */
 .flying-card {
@@ -149,8 +187,3 @@
   text-align: center; margin-top: 60px; font-size: 0.72rem; color: rgba(255,255,255,0.3);
 }
 .reveal-footer-note a { text-decoration: underline; color: rgba(255,255,255,0.45); }
-
-@media (max-width: 820px) {
-  .reveal-teams { grid-template-columns: 1fr; }
-  .reveal-vs { display: none; }
-}
